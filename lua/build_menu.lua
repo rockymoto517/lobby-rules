@@ -1,3 +1,14 @@
+if io.file_is_readable(LobbyRules.save_path) then
+	local saved = io.load_as_json(LobbyRules.save_path)
+	if saved then
+		for k, v in pairs(saved) do
+			if LobbyRules.settings[k] ~= nil then
+				LobbyRules.settings[k] = v
+			end
+		end
+	end
+end
+
 Hooks:Add("MenuManagerBuildCustomMenus", "LobbyRulesCustomMenu", function(_, nodes)
 	local id = "LobbyRulesMenu"
 	MenuHelper:NewMenu(id)
@@ -21,6 +32,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "LobbyRulesCustomMenu", function(_, nod
 		callback = "lobbyrules_bulletstorm_toggle",
 		menu_id = id,
 		localized = false,
+		value = LobbyRules.settings.no_bullet_storm,
 	})
 	MenuHelper:AddToggle({
 		id = "no_second_joker",
@@ -29,6 +41,7 @@ Hooks:Add("MenuManagerBuildCustomMenus", "LobbyRulesCustomMenu", function(_, nod
 		callback = "lobbyrules_second_joker_toggle",
 		menu_id = id,
 		localized = false,
+		value = LobbyRules.settings.no_second_joker,
 	})
 
 	nodes[id] = MenuHelper:BuildMenu(id, { back_callback = "lobbyrules_save" })
@@ -41,14 +54,3 @@ Hooks:Add("LocalizationManagerPostInit", "LobbyRulesLocalizationInit", function(
 		["lobbyrules_menu"] = "Lobby Rules",
 	})
 end)
-
-if io.file_is_readable(LobbyRules.save_path) then
-	local saved = io.load_as_json(LobbyRules.save_path)
-	if saved then
-		for k, v in pairs(saved) do
-			if LobbyRules.settings[k] then
-				LobbyRules.settings[k] = v
-			end
-		end
-	end
-end
