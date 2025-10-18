@@ -1,7 +1,7 @@
 [
 	{
 		"ident": "lobbyrules_updates",
-		"version": "1.0.1",
+		"version": "1.0.2",
 		"patchnotes_url": "https://github.com/rockymoto517/lobby-rules/commits/main",
 		"download_url": "https://github.com/rockymoto517/lobby-rules/archive/refs/heads/main.zip"
 	}

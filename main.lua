@@ -9,6 +9,10 @@ if not LobbyRules then
 		no_second_joker = false,
 	}
 
+	function LobbyRules:log_chat(...)
+		managers.chat:_receive_message(managers.chat.GAME, "DEBUG", table.concat({ ... }, " "), Color.green)
+	end
+
 	-- Hook loading
 	LobbyRules.required = {}
 
