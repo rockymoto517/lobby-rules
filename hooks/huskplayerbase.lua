@@ -1,6 +1,9 @@
 local old_upgrade_value = HuskPlayerBase.upgrade_value
 function HuskPlayerBase:upgrade_value(category, upgrade)
 	local val = old_upgrade_value(self, category, upgrade)
+	if NetworkHelper:IsClient() then
+		return val
+	end
 
 	-- Crew chief check
 	-- Lots of extra checks cause it's needed
@@ -10,7 +13,7 @@ function HuskPlayerBase:upgrade_value(category, upgrade)
 		local skills_deck_info = string.split(peer:skills(), "-")
 		if skills_deck_info then
 			local deck = skills_deck_info[2]
-			deck_id = number(string.split(deck, "_")[1])
+			deck_id = tonumber(string.split(deck, "_")[1])
 		end
 	end
 

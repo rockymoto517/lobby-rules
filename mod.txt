@@ -2,7 +2,7 @@
 	"name": "Lobby Rules",
 	"description": "Disables clients from doing some stuff.",
 	"author": "rocky",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"hooks": [
 		{ "hook_id": "lib/units/equipment/ammo_bag/ammobagbase", "script_path": "main.lua" },
 		{ "hook_id": "lib/units/beings/player/huskplayerbase", "script_path": "main.lua" },
